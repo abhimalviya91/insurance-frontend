@@ -1,0 +1,109 @@
+.plans-section {
+  padding: 80px 0;
+  background: #f8f9fc;
+}
+
+.plans-title {
+  text-align: center;
+  font-weight: 700;
+  color: #0d6efd;
+}
+
+.plans-subtitle {
+  text-align: center;
+  margin-bottom: 50px;
+  color: #555;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* CARD */
+.plan-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.plan-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #0d6efd, #25d366);
+}
+
+.plan-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+}
+
+.plan-card h4 {
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* PRICE */
+.plan-price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0d6efd;
+  margin-bottom: 10px;
+}
+
+.plan-price span {
+  font-size: 14px;
+  color: #666;
+}
+
+/* DESC */
+.plan-desc {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* ACTIONS */
+.plan-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-call,
+.btn-whatsapp {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-call {
+  background: #0d6efd;
+  color: #fff;
+}
+
+.btn-call:hover {
+  background: #084298;
+}
+
+.btn-whatsapp {
+  border: 1px solid #25d366;
+  color: #25d366;
+}
+
+.btn-whatsapp:hover {
+  background: #25d366;
+  color: #fff;
+}

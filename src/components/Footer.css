@@ -1,0 +1,95 @@
+.footer {
+  background: linear-gradient(
+    180deg,
+    #0d6efd 0%,     /* same blue as trust strip */
+    #0b1d3a 45%,    /* smooth transition */
+    #08162e 100%    /* deep premium navy */
+  );
+  color: #d1d5db;
+  padding: 70px 0 30px;
+}
+
+
+.footer-brand {
+  color: #ffffff;
+  /* font-weight: 700; */
+  /* font-size: 1.6rem; */
+}
+
+.footer-text {
+  /* margin-top: 10px; */
+  /* font-size: 0.95rem; */
+  opacity: 0.85;
+}
+
+.footer-title {
+  color: #ffffff;
+  /* margin-bottom: 15px; */
+  /* font-weight: 600; */
+}
+
+.footer-links {
+  opacity: 0.85;
+  /* list-style: none; */
+  /* padding: 0; */
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #0d6efd;
+}
+
+/* ACTION BUTTONS */
+.footer-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.footer-btn {
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-btn.call {
+  background: #0d6efd;
+  color: #fff;
+}
+
+.footer-btn.call:hover {
+  background: #084298;
+}
+
+.footer-btn.whatsapp {
+  border: 1px solid #25d366;
+  color: #25d366;
+}
+
+.footer-btn.whatsapp:hover {
+  background: #25d366;
+  color: #fff;
+}
+
+/* BOTTOM */
+.footer hr {
+  border-color: rgba(255, 255, 255, 0.1);
+  margin: 30px 0 15px;
+}
+
+.footer-bottom {
+  text-align: center;
+  /* font-size: 0.85rem; */
+  opacity: 0.85;
+}
