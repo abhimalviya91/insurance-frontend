@@ -3,57 +3,48 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
+  const navigate = useNavigate(); // ✅ now used
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const loginAdmin = async (e) => {
-    e.preventDefault(); // 🔥 MOST IMPORTANT LINE
-
-    console.log("LOGIN FUNCTION CALLED");
+    e.preventDefault();
 
     try {
-      const res = await axios.post("https://insurance-backend-vhwz.onrender.com/api/admin-login", {
-        email,
-        password,
-      });
-
-      console.log("LOGIN SUCCESS:", res.data);
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_BASE}/api/auth/login`,
+        { email, password }
+      );
 
       localStorage.setItem("adminToken", res.data.token);
-      window.location.href = "/admin-dashboard";
+      navigate("/admin-dashboard"); // ✅ navigate USED
     } catch (err) {
-      console.log("LOGIN ERROR:", err);
-      alert("Login failed");
+      alert("Invalid admin credentials");
     }
   };
 
   return (
-    <div className="auth-wrapper">
-      <div className="auth-card">
-        <h3>Admin Login</h3>
+    <div className="container py-5">
+      <h3>Admin Login</h3>
 
-        {/* ✅ FORM CONTROLLED PROPERLY */}
-        <form onSubmit={loginAdmin}>
-          <input
-            type="email"
-            placeholder="Email"
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
+      <form onSubmit={loginAdmin}>
+        <input
+          className="form-control mb-2"
+          placeholder="Admin Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-          <input
-            type="password"
-            placeholder="Password"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        <input
+          type="password"
+          className="form-control mb-3"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-          <button type="submit" className="auth-btn">
-            Login
-          </button>
-        </form>
-      </div>
+        <button className="btn btn-primary w-100">Login</button>
+      </form>
     </div>
   );
 };
