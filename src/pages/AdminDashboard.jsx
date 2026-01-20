@@ -122,19 +122,27 @@ const AdminDashboard = () => {
   if (!window.confirm("Delete this lead?")) return;
 
   try {
-    await axios.delete(`${API_BASE}/api/contact/${id}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
-      },
-    });
+    const token = localStorage.getItem("adminToken");
 
-    // refresh list
-    fetchLeads();
+    await axios.delete(
+      `${API_BASE}/api/contact/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    fetchLeads(); // refresh list
   } catch (err) {
-    console.error("DELETE LEAD ERROR:", err.response?.data);
+    console.error(
+      "DELETE LEAD ERROR:",
+      err.response?.data || err.message
+    );
     alert("Delete failed");
   }
 };
+
 
 
   // 🚪 Logout
