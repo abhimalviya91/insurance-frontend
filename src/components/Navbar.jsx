@@ -48,12 +48,12 @@ const Navbar = () => {
               Login
             </NavLink>
 
-            <a href="tel:9876543210" className="nav-btn call">
+            <a href="tel:9926282650" className="nav-btn call">
               📞 Call
             </a>
 
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/919926282650"
               target="_blank"
               rel="noreferrer"
               className="nav-btn whatsapp"

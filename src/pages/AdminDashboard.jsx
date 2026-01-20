@@ -110,6 +110,7 @@ const AdminDashboard = () => {
   const fetchLeads = async () => {
     try {
       const res = await axios.get(`${API_BASE}/api/contact`);
+      console.log("Leads Response:", res.data);
       setLeads(res.data);
     } catch (err) {
       console.error("FETCH LEADS ERROR:", err);
@@ -118,15 +119,23 @@ const AdminDashboard = () => {
 
   // ❌ Delete lead
   const deleteLead = async (id) => {
-    if (!window.confirm("Delete this lead?")) return;
+  if (!window.confirm("Delete this lead?")) return;
 
-    try {
-      await axios.delete(`${API_BASE}/api/contact/${id}`);
-      fetchLeads();
-    } catch (err) {
-      console.error("DELETE LEAD ERROR:", err);
-    }
-  };
+  try {
+    await axios.delete(`${API_BASE}/api/contact/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+      },
+    });
+
+    // refresh list
+    fetchLeads();
+  } catch (err) {
+    console.error("DELETE LEAD ERROR:", err.response?.data);
+    alert("Delete failed");
+  }
+};
+
 
   // 🚪 Logout
   const logout = () => {

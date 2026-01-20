@@ -1,6 +1,8 @@
-import "./Contact.css";
 import { useState } from "react";
 import axios from "axios";
+import "./Contact.css";
+
+const API_BASE = "https://insurance-backend-vhwz.onrender.com";
 
 const Contact = () => {
   const [form, setForm] = useState({
@@ -10,61 +12,75 @@ const Contact = () => {
     message: "",
   });
 
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const submitForm = async (e) => {
     e.preventDefault();
 
-    await axios.post("https://insurance-backend-vhwz.onrender.com/api/contact", form)
-;
+    try {
+      await axios.post(`${API_BASE}/api/contact`, form);
 
-    alert("Message sent successfully!");
-    setForm({ name: "", email: "", phone: "", message: "" });
+      alert("Message sent successfully ✅");
+
+      // 🔥 YE LINE SABSE IMPORTANT HAI
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } catch (err) {
+      alert("Something went wrong ❌");
+    }
   };
 
   return (
     <section className="contact-section">
       <div className="container">
         <h2 className="contact-title">Contact Us</h2>
-        <p className="contact-subtitle">
-          Get in touch for the best Life & Health Insurance guidance
-        </p>
 
-        <div className="contact-card">
-          <form onSubmit={submitForm}>
-            <input
-              placeholder="Your Name"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              required
-            />
+        <form className="contact-form" onSubmit={submitForm}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={form.name}
+            onChange={handleChange}
+            required
+          />
 
-            <input
-              type="email"
-              placeholder="Email Address"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              required
-            />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
 
-            <input
-              type="tel"
-              placeholder="Mobile Number"
-              value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              required
-            />
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Mobile Number"
+            value={form.phone}
+            onChange={handleChange}
+            required
+          />
 
-            <textarea
-              placeholder="Your Message"
-              value={form.message}
-              onChange={(e) =>
-                setForm({ ...form, message: e.target.value })
-              }
-              rows="4"
-            ></textarea>
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            value={form.message}
+            onChange={handleChange}
+          />
 
-            <button type="submit">Send Message</button>
-          </form>
-        </div>
+          <button type="submit">Send Message</button>
+        </form>
       </div>
     </section>
   );
