@@ -13,21 +13,15 @@ const Contact = () => {
   });
 
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const submitForm = async (e) => {
     e.preventDefault();
-
     try {
       await axios.post(`${API_BASE}/api/contact`, form);
-
       alert("Message sent successfully ✅");
 
-      // 🔥 YE LINE SABSE IMPORTANT HAI
       setForm({
         name: "",
         email: "",
@@ -43,8 +37,11 @@ const Contact = () => {
     <section className="contact-section">
       <div className="container">
         <h2 className="contact-title">Contact Us</h2>
+        <p className="contact-subtitle">
+          Get in touch for the best Life & Health Insurance guidance
+        </p>
 
-        <form className="contact-form" onSubmit={submitForm}>
+        <form className="contact-card" onSubmit={submitForm}>
           <input
             type="text"
             name="name"
