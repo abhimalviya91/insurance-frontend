@@ -1,15 +1,13 @@
-import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const AdminLogin = () => {
-  const navigate = useNavigate(); // ✅ now used
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginAdmin = async (e) => {
-    e.preventDefault();
-
+  const login = async () => {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_BASE}/api/auth/login`,
@@ -17,35 +15,18 @@ const AdminLogin = () => {
       );
 
       localStorage.setItem("adminToken", res.data.token);
-      navigate("/admin-dashboard"); // ✅ navigate USED
+      navigate("/admin-dashboard");
     } catch (err) {
-      alert("Invalid admin credentials");
+      alert("Invalid credentials");
     }
   };
 
   return (
-    <div className="container py-5">
-      <h3>Admin Login</h3>
-
-      <form onSubmit={loginAdmin}>
-        <input
-          className="form-control mb-2"
-          placeholder="Admin Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <input
-          type="password"
-          className="form-control mb-3"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <button className="btn btn-primary w-100">Login</button>
-      </form>
-    </div>
+    <>
+      <input onChange={(e) => setEmail(e.target.value)} />
+      <input type="password" onChange={(e) => setPassword(e.target.value)} />
+      <button onClick={login}>Login</button>
+    </>
   );
 };
 
